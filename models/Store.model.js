@@ -7,9 +7,13 @@ const storeSchema = new Schema({
     },
     description:{
         type: String,
+        required:true
     },
     location: String,
-    socialMedia:{
+    instagram:{
+        type: String
+    },
+    facebook:{
         type: String
     },
     _owner:{ 
@@ -19,6 +23,5 @@ const storeSchema = new Schema({
         type:String,
         default: "https://www.clipartmax.com/png/middle/291-2916483_shop-icon-store-icon-white-png.png"
       }
-
 });
 module.exports = model ("Store", storeSchema)
