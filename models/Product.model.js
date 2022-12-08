@@ -7,8 +7,9 @@ const productSchema = new Schema({
     },
     description:{
         type: String,
+        required:true
     },
-    _owner:{ 
+    _store:{ 
         type: Schema.Types.ObjectId, ref: "Store"
     },
     image: {

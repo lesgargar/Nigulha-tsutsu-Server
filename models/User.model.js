@@ -18,10 +18,18 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Name is required."],
     },
+    gender:{
+      type:String,
+      enum:["Female", "Male", "Transgender", "Other", "I prefer not to say"]
+    },
     role:{
       type:String,
       enum:["Admin", "User"],
       default:"User"
+    },
+    image:{
+      type:String,
+      default: "https://cdn-icons-png.flaticon.com/512/5987/5987462.png"
     }
   },
   {
