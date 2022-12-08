@@ -3,11 +3,13 @@ const { isAuthenticated } = require("../middleware/jwt.middleware");
 const router = express.Router();
 const Product = require("../models/Product.model");
 const Store = require("../models/Store.model")
+
+
 //all products from 1 store
 router.get("/:idStore/products", async (req, res, next) => {
   const { idStore } = req.params;
   try {
-    const products = Product.find({ _store: idStore });
+    const products = await Product.find({ _store: idStore });
     res.status(200).json({ result: products });
   } catch (err) {
     res
