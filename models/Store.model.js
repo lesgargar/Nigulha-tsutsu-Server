@@ -16,6 +16,9 @@ const storeSchema = new Schema({
     facebook:{
         type: String
     },
+    whatsApp:{
+        type: String
+    },
     _owner:{ 
         type: Schema.Types.ObjectId, ref: "User"
     },

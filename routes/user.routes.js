@@ -1,6 +1,7 @@
 const { isAuthenticated } = require("../middleware/jwt.middleware");
 const User = require("../models/User.model");
 const router = require("express").Router();
+const mongoose = require("mongoose")
 
 router.get("/myProfile", isAuthenticated, async (req, res, next) => {
     const{_id}= req.payload
