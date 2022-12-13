@@ -18,6 +18,10 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Name is required."],
     },
+    lastName: {
+      type: String,
+      required: [true, "Name is required."],
+    },
     gender:{
       type:String,
       enum:["Female", "Male", "Transgender", "Other", "I prefer not to say"]

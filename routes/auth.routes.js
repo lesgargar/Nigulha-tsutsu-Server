@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
 
@@ -73,6 +74,8 @@ router.post("/signup", async (req, res, next) => {
       algorithm: "HS256",
       expiresIn: "6h",
     });
+
+    //send welcome email here 
 
     // Send a json response containing the user object
     res.status(201).json({ user: user,authToken });

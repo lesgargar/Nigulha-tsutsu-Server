@@ -2,6 +2,7 @@ const express = require("express");
 const { isAuthenticated } = require("../middleware/jwt.middleware");
 const router = express.Router();
 const Store = require("../models/Store.model");
+const mongoose = require("mongoose")
 
 //view all stores
 router.get("/", async (rq, res, next) => {
@@ -34,6 +35,9 @@ router.patch("/:storeId/edit", isAuthenticated,  async(req, res, next)=>{
     const{storeId} = req.params 
     const {_id }=req.payload
     const { image, ...restBody } = req.body 
+    if(!mongoose.Types.ObjectId.isValid(storeId)){
+        return;
+      }
 try{
 const storeUpdate = await Store.findOneAndUpdate({_id:storeId, _owner:_id}, {...restBody}, {new:true})
 res.status(200).json({result: storeUpdate})
@@ -46,6 +50,9 @@ res.status(200).json({result: storeUpdate})
 //delete store 
 router.delete("/:idStore/delete", isAuthenticated, async(req, res, next)=>{
     const{idStore} = req.params
+    if(!mongoose.Types.ObjectId.isValid(idStore)){
+        return;
+      }
 try{
 await Store.findByIdAndDelete(idStore);
 res.status(200).json({message: "Store correctly deleted"})
