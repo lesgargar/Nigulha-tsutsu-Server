@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 
 
 //get all reviews from 1 store
-router.get("/:storeId/reviews", isAuthenticated, async(req,res,next)=>{
+router.get("/:storeId/reviews", async(req,res,next)=>{
     const {storeId} = req.params
     if(!mongoose.Types.ObjectId.isValid(storeId)){
       return;
