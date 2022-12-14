@@ -47,8 +47,7 @@ router.post( "/:idStore/createProduct",
 
 router.patch("/:id/edit", isAuthenticated, async (req, res, next) => {
   const { id } = req.params;
-  const { name, description } = req.body;
-  const { _id } = req.payload;
+  const { _owner,...restBody } = req.body;
 
   if(!mongoose.Types.ObjectId.isValid(id)){
     return;
@@ -58,7 +57,7 @@ router.patch("/:id/edit", isAuthenticated, async (req, res, next) => {
 
     const productUpdate = await Product.findByIdAndUpdate(
       id,
-      { name, description },
+      restBody,
       { new: true }
     );
     res.status(200).json({ result: productUpdate });
