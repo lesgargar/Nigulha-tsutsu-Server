@@ -20,7 +20,6 @@ const userSchema = new Schema(
     },
     lastName: {
       type: String,
-      required: [true, "Name is required."],
     },
     gender:{
       type:String,
