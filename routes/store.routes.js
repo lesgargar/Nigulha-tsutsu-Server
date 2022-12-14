@@ -4,8 +4,10 @@ const router = express.Router();
 const Store = require("../models/Store.model");
 const mongoose = require("mongoose")
 
+
+
 //view all stores
-router.get("/", async (rq, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const stores = await Store.find();
     res.status(200).json({result:stores});
@@ -14,9 +16,18 @@ router.get("/", async (rq, res, next) => {
   }
 });
 
+//get all store by owner
+router.get("/myStores",isAuthenticated ,async (req, res, next) => {
+  const {_id }=req.payload
+  try {
+    const stores = await Store.find({_owner:_id});
+    res.status(200).json({result:stores});
+  } catch (err) {
+    res.status(403).json({ message: "Error, Cannot get stores" }, err);
+  }
+});
 //create store
-router.post(
-  "/create",
+router.post("/create",
   isAuthenticated,
   async (req, res, next) => {
     const { _id } = req.payload;
