@@ -9,6 +9,12 @@ const productSchema = new Schema({
         type: String,
         required:true
     },
+    detail:{
+        type: String,
+    },
+    price:{
+        type: Number,
+    },
     _store:{ 
         type: Schema.Types.ObjectId, ref: "Store"
     },
