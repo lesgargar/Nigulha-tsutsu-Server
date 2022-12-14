@@ -26,6 +26,17 @@ router.get("/myStores",isAuthenticated ,async (req, res, next) => {
     res.status(403).json({ message: "Error, Cannot get stores" }, err);
   }
 });
+///1 store detail
+router.get("/:idStore/detail" ,async (req, res, next) => {
+  
+  const{idStore}=req.params
+  try {
+    const store = await Store.findById(idStore);
+    res.status(200).json({result:store});
+  } catch (err) {
+    res.status(403).json({ message: "Error, Cannot get stores" }, err);
+  }
+})
 //create store
 router.post("/create",
   isAuthenticated,

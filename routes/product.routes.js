@@ -23,6 +23,22 @@ router.get("/:idStore/products", async (req, res, next) => {
   }
 });
 
+router.get("/:idProduct/detail", async (req, res, next) => {
+  const { idProduct } = req.params;
+
+  if(!mongoose.Types.ObjectId.isValid(idProduct)){
+    return;
+  }
+  try {
+    const product = await Product.findById(idProduct);
+    res.status(200).json({ result: product });
+  } catch (err) {
+    res
+      .status(403)
+      .json({ errorMessage: "Error, cannot get the products." });
+  }
+});
+
 router.post( "/:idStore/createProduct",
   isAuthenticated,
   async (req, res, next) => {
