@@ -12,7 +12,7 @@ router.get("/:storeId/reviews", async(req,res,next)=>{
       return;
     }
     try{
-        const allRevStore = await Review.find({_store:storeId})
+        const allRevStore = await Review.find({_store:storeId}).populate("_owner")
         res.status(200).json({result: allRevStore})
 
     }catch(err){
