@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const uploadRoutes = require("./upload.routes");
+
 const authRoutes = require("./auth.routes")
 const productRoutes = require("./product.routes")
 const reviewRoutes = require("./review.routes")
@@ -13,6 +15,6 @@ router.use("/user",userRoutes)
 router.use("/products", productRoutes);
 router.use("/reviews", reviewRoutes);
 router.use("/stores", storeRoutes);
-
+router.use("/upload",uploadRoutes)
 
 module.exports = router;
