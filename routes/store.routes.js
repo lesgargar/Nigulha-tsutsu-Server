@@ -56,7 +56,7 @@ router.post("/create",
 router.patch("/:storeId/edit", isAuthenticated,  async(req, res, next)=>{
     const{storeId} = req.params 
     const {_id }=req.payload
-    const { image, ...restBody } = req.body 
+    const {  ...restBody } = req.body 
     if(!mongoose.Types.ObjectId.isValid(storeId)){
         return;
       }
